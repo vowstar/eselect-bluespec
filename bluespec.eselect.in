@@ -4,7 +4,7 @@
 
 DESCRIPTION="Manage bluespec (/usr/bin/bsc) implementations"
 MAINTAINER="vowstar@gmail.com"
-VERSION="1.0.0"
+VERSION="1.0.1"
 
 # find a list of bluespec targets
 find_targets() {

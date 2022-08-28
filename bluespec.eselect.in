@@ -66,7 +66,7 @@ do_show() {
 
 	write_list_start "Current bluespec implementation:"
 	if [[ -L "${EROOT}/usr/bin/bsc" ]] ; then
-		write_kv_list_entry "$(basename ${$(canonicalise ${EROOT}/usr/bin/bsc )%"/bin/bsc"} )" ""
+		write_kv_list_entry "$(basename $(echo $(canonicalise ${EROOT}/usr/bin/bsc ) | sed "s|/bin/bsc$||"))" ""
 	elif [[ -e "${EROOT}/usr/bin/bsc" ]] ; then
 		write_kv_list_entry "(not a symlink)" ""
 	else
@@ -87,7 +87,7 @@ do_list() {
 	targets=( $(find_targets ) )
 	for (( i = 0; i < ${#targets[@]}; i++ )); do
 		[[ ${targets[i]} = \
-			"$(basename ${$(canonicalise ${EROOT}/usr/bin/bsc )%"/bin/bsc"} )" ]] \
+			"$(basename $(echo $(canonicalise ${EROOT}/usr/bin/bsc ) | sed "s|/bin/bsc$||"))" ]] \
 			&& targets[i]=$(highlight_marker "${targets[i]}")
 	done
 	write_list_start "Available bluespec implementations:"

@@ -145,7 +145,7 @@ do_update() {
 		die -q "Usage error"
 
 	if [[ -L "${EROOT}/usr/bin/bsc" ]]; then
-		[[ ${1} == "--if-unset" ]] && return
+		( [[ ${1} == "--if-unset" ]] && [[ -a /usr/bin/bsc ]] ) && return
 		remove_symlinks || die -q "Can't remove existing link"
 	fi
 	if [[ -e "${EROOT}/usr/bin/bsc" ]]; then
